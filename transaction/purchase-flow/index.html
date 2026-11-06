@@ -1,0 +1,2179 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Practical Guide to Understanding Microsoft Dynamics NAV if You are ERPNext Implementor.">
+      
+      
+      
+      
+        <link rel="prev" href="../../master-data/master-data/">
+      
+      
+        <link rel="next" href="../selling-flow/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Purchasing - Microsoft Dynamics NAV Playbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#purchase-flow-alur-pembelian-nav-2017" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microsoft Dynamics NAV Playbook" class="md-header__button md-logo" aria-label="Microsoft Dynamics NAV Playbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microsoft Dynamics NAV Playbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Purchasing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/pengantar-dan-pemetaan-erpnext/" class="md-tabs__link">
+          
+  
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../master-data/master-data/" class="md-tabs__link">
+          
+  
+  
+  Master Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Transaction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/customer-price-group-dan-discount-group/" class="md-tabs__link">
+          
+  
+  
+  Miscellaneous
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microsoft Dynamics NAV Playbook" class="md-nav__button md-logo" aria-label="Microsoft Dynamics NAV Playbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Microsoft Dynamics NAV Playbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/pengantar-dan-pemetaan-erpnext/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../master-data/master-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transaction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Purchasing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Purchasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gambaran-alur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Gambaran Alur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-jenis-dokumen-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Jenis Dokumen Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-struktur-dokumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Struktur Dokumen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Struktur Dokumen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-purchase-header-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Purchase Header (38)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-purchase-line-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Purchase Line (39)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-panduan-langkah-demi-langkah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Panduan Langkah demi Langkah
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Panduan Langkah demi Langkah">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langkah-1-opsional-purchase-quote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 1 — (Opsional) Purchase Quote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-2-membuat-purchase-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 2 — Membuat Purchase Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-3-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 3 — Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-4-post-receive-penerimaan-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 4 — Post Receive (Penerimaan Barang)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-5-post-invoice-penagihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 5 — Post Invoice (Penagihan)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-6-contoh-pengiriman-parsial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 6 — Contoh Pengiriman Parsial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-7-satu-faktur-untuk-beberapa-penerimaan-dokumen-invoice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 7 — Satu Faktur untuk Beberapa Penerimaan (Dokumen Invoice)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-8-invoice-langsung-tanpa-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 8 — Invoice Langsung Tanpa Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-9-biaya-tambahan-item-charge-setara-landed-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 9 — Biaya Tambahan (Item Charge, setara Landed Cost)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-10-pelunasan-vendor-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 10 — Pelunasan Vendor (Payment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-11-retur-dan-koreksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 11 — Retur dan Koreksi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-harga-dan-diskon-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Harga dan Diskon Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-relasi-tabel-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Relasi Tabel Pembelian
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Relasi Tabel Pembelian">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-daftar-relasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Daftar Relasi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tabel-dokumen-kerja-vs-terposting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Tabel Dokumen Kerja vs Terposting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-er-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 ER Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-daftar-error-umum-saat-posting-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Daftar Error Umum Saat Posting Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ringkasan-perbandingan-dengan-erpnext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ringkasan Perbandingan dengan ERPNext
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../selling-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Selling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Miscellaneous
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/customer-price-group-dan-discount-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Price and Discount
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gambaran-alur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Gambaran Alur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-jenis-dokumen-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Jenis Dokumen Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-struktur-dokumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Struktur Dokumen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Struktur Dokumen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-purchase-header-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Purchase Header (38)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-purchase-line-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Purchase Line (39)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-panduan-langkah-demi-langkah" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Panduan Langkah demi Langkah
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Panduan Langkah demi Langkah">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langkah-1-opsional-purchase-quote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 1 — (Opsional) Purchase Quote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-2-membuat-purchase-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 2 — Membuat Purchase Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-3-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 3 — Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-4-post-receive-penerimaan-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 4 — Post Receive (Penerimaan Barang)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-5-post-invoice-penagihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 5 — Post Invoice (Penagihan)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-6-contoh-pengiriman-parsial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 6 — Contoh Pengiriman Parsial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-7-satu-faktur-untuk-beberapa-penerimaan-dokumen-invoice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 7 — Satu Faktur untuk Beberapa Penerimaan (Dokumen Invoice)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-8-invoice-langsung-tanpa-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 8 — Invoice Langsung Tanpa Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-9-biaya-tambahan-item-charge-setara-landed-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 9 — Biaya Tambahan (Item Charge, setara Landed Cost)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-10-pelunasan-vendor-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 10 — Pelunasan Vendor (Payment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-11-retur-dan-koreksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah 11 — Retur dan Koreksi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-harga-dan-diskon-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Harga dan Diskon Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-relasi-tabel-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Relasi Tabel Pembelian
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Relasi Tabel Pembelian">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-daftar-relasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Daftar Relasi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tabel-dokumen-kerja-vs-terposting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Tabel Dokumen Kerja vs Terposting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-er-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 ER Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-daftar-error-umum-saat-posting-pembelian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Daftar Error Umum Saat Posting Pembelian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ringkasan-perbandingan-dengan-erpnext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ringkasan Perbandingan dengan ERPNext
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="purchase-flow-alur-pembelian-nav-2017">Purchase Flow (Alur Pembelian) NAV 2017</h1>
+<blockquote>
+<p>Pasangan ERPNext: Request for Quotation → Supplier Quotation → Purchase Order → Purchase Receipt → Purchase Invoice → Payment Entry → Purchase Return.
+Dikecualikan sesuai permintaan: entri akuntansi (G/L) dan pergerakan stok (Item Ledger / Value Entry).</p>
+</blockquote>
+<hr />
+<h2 id="1-gambaran-alur">1. Gambaran Alur</h2>
+<pre class="mermaid"><code>flowchart TD
+    M["Master Data&lt;br/&gt;Vendor, Item, Location,&lt;br/&gt;Payment Terms"] --&gt; Q{"Perlu&lt;br/&gt;penawaran?"}
+    Q -- "Ya" --&gt; PQ["Purchase Quote"]
+    PQ -- "Make Order" --&gt; PO
+    Q -- "Tidak" --&gt; PO["Purchase Order&lt;br/&gt;Status: Open"]
+    PO -- "Release" --&gt; PR["Purchase Order&lt;br/&gt;Status: Released"]
+    PR --&gt; POST{"Post…&lt;br/&gt;pilih opsi"}
+    POST -- "Receive" --&gt; RCPT["Posted Purchase Receipt&lt;br/&gt;(Purch. Rcpt. Header/Line)"]
+    POST -- "Invoice" --&gt; INV["Posted Purchase Invoice&lt;br/&gt;(Purch. Inv. Header/Line)"]
+    POST -- "Receive and Invoice" --&gt; RCPT
+    POST -- "Receive and Invoice" --&gt; INV
+    RCPT -- "Post lagi: Receive / Invoice" --&gt; PR
+    INV --&gt; PAY["Payment Journal&lt;br/&gt;Apply ke Vendor Ledger Entry"]
+    RCPT -. "retur barang" .-&gt; RO["Purchase Return Order"]
+    INV -. "koreksi tagihan" .-&gt; CM["Purchase Credit Memo"]
+    RO --&gt; RS["Posted Return Shipment&lt;br/&gt;+ Posted Purchase Credit Memo"]
+    CM --&gt; PCM["Posted Purchase Credit Memo"]</code></pre>
+<p>Catatan: pesanan yang <strong>sudah diterima seluruhnya dan sudah ditagih seluruhnya</strong> otomatis dihapus dari daftar Purchase Order (diarsipkan bila <code>Archive Orders</code> aktif).</p>
+<hr />
+<h2 id="2-jenis-dokumen-pembelian">2. Jenis Dokumen Pembelian</h2>
+<p>Semua jenis berada di tabel yang sama (<strong>Purchase Header 38</strong> / <strong>Purchase Line 39</strong>) dan dibedakan oleh <code>Document Type</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Document Type</th>
+<th>Fungsi</th>
+<th>Hasil Posting</th>
+<th>Padanan ERPNext</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quote</strong></td>
+<td>Permintaan/penawaran harga</td>
+<td>Tidak diposting; <code>Make Order</code> atau <code>Make Invoice</code></td>
+<td>RFQ / Supplier Quotation</td>
+</tr>
+<tr>
+<td><strong>Blanket Order</strong></td>
+<td>Kontrak jumlah besar, dipecah per pengiriman</td>
+<td>Tidak diposting; <code>Make Order</code></td>
+<td>Blanket Order</td>
+</tr>
+<tr>
+<td><strong>Order</strong></td>
+<td>Pesanan pembelian</td>
+<td><code>Receive</code> → Posted Purchase Receipt; <code>Invoice</code> → Posted Purchase Invoice</td>
+<td>Purchase Order</td>
+</tr>
+<tr>
+<td><strong>Invoice</strong></td>
+<td>Tagihan langsung tanpa Order</td>
+<td>Posted Purchase Invoice (+ Posted Receipt bila <code>Receipt on Invoice</code> aktif)</td>
+<td>Purchase Invoice (tanpa PO)</td>
+</tr>
+<tr>
+<td><strong>Return Order</strong></td>
+<td>Retur ke vendor</td>
+<td><code>Ship</code> → Posted Return Shipment; <code>Invoice</code> → Posted Purchase Credit Memo</td>
+<td>Purchase Return</td>
+</tr>
+<tr>
+<td><strong>Credit Memo</strong></td>
+<td>Nota kredit langsung</td>
+<td>Posted Purchase Credit Memo (+ Return Shipment bila <code>Return Shipment on Credit Memo</code> aktif)</td>
+<td>Debit Note</td>
+</tr>
+</tbody>
+</table>
+<p>Menu: <strong>Search → Purchase Quotes / Purchase Orders / Purchase Invoices / Purchase Return Orders / Purchase Credit Memos</strong>.</p>
+<hr />
+<h2 id="3-struktur-dokumen">3. Struktur Dokumen</h2>
+<h3 id="31-purchase-header-38">3.1 Purchase Header (38)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Fungsi / Catatan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Document Type</code>, <code>No.</code></td>
+<td>Kunci. <code>No.</code> otomatis dari series sesuai <code>Document Type</code></td>
+</tr>
+<tr>
+<td><code>Buy-from Vendor No.</code></td>
+<td><strong>Vendor pemasok.</strong> Saat diisi, NAV menyalin banyak default dari Vendor Card</td>
+</tr>
+<tr>
+<td><code>Buy-from Vendor Name</code>, alamat</td>
+<td>Salinan dari Vendor (bisa diubah di dokumen)</td>
+</tr>
+<tr>
+<td><code>Pay-to Vendor No.</code></td>
+<td>Vendor yang ditagih/dibayar (default sama dengan Buy-from, atau <code>Pay-to Vendor No.</code> di Vendor Card)</td>
+</tr>
+<tr>
+<td><code>Order Date</code></td>
+<td>Tanggal pesanan</td>
+</tr>
+<tr>
+<td><code>Posting Date</code></td>
+<td>Tanggal pembukuan; <strong>harus dalam rentang posting yang diizinkan</strong></td>
+</tr>
+<tr>
+<td><code>Document Date</code></td>
+<td>Tanggal dokumen sumber (misalnya tanggal faktur vendor)</td>
+</tr>
+<tr>
+<td><code>Due Date</code></td>
+<td>Jatuh tempo; dihitung dari <code>Payment Terms Code</code></td>
+</tr>
+<tr>
+<td><code>Expected Receipt Date</code></td>
+<td>Estimasi barang tiba</td>
+</tr>
+<tr>
+<td><code>Vendor Invoice No.</code></td>
+<td>Nomor faktur dari vendor. <strong>Wajib</strong> saat posting Invoice jika <code>Ext. Doc. No. Mandatory</code> aktif</td>
+</tr>
+<tr>
+<td><code>Vendor Order No.</code>, <code>Vendor Shipment No.</code></td>
+<td>Referensi nomor dari sisi vendor (opsional)</td>
+</tr>
+<tr>
+<td><code>Payment Terms Code</code>, <code>Payment Method Code</code></td>
+<td>Default dari Vendor</td>
+</tr>
+<tr>
+<td><code>Location Code</code></td>
+<td>Gudang penerima (default dari Vendor; diwariskan ke Line)</td>
+</tr>
+<tr>
+<td><code>Currency Code</code></td>
+<td>Kosong = mata uang lokal</td>
+</tr>
+<tr>
+<td><code>Prices Including VAT</code></td>
+<td>Apakah <code>Direct Unit Cost</code> sudah termasuk pajak</td>
+</tr>
+<tr>
+<td><code>Purchaser Code</code></td>
+<td>Dari Vendor atau diisi manual</td>
+</tr>
+<tr>
+<td><code>Status</code></td>
+<td><code>Open</code>, <code>Released</code>, <code>Pending Approval</code>, <code>Pending Prepayment</code></td>
+</tr>
+<tr>
+<td><code>Receiving No. Series</code>, <code>Posting No. Series</code></td>
+<td>Series untuk nomor Posted Receipt / Posted Invoice</td>
+</tr>
+<tr>
+<td><code>Receive</code>, <code>Invoice</code></td>
+<td>Dicentang otomatis saat dialog Post dipilih</td>
+</tr>
+<tr>
+<td><code>Vendor Posting Group</code>, <code>Gen. Bus. Posting Group</code>, <code>VAT Bus. Posting Group</code></td>
+<td>Disalin dari Vendor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-purchase-line-39">3.2 Purchase Line (39)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Fungsi / Catatan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Document Type</code>, <code>Document No.</code>, <code>Line No.</code></td>
+<td>Kunci baris</td>
+</tr>
+<tr>
+<td><code>Type</code></td>
+<td><code>Item</code>, <code>G/L Account</code>, <code>Resource</code>, <code>Fixed Asset</code>, <code>Charge (Item)</code>; manual ini memakai <code>Item</code> dan <code>Charge (Item)</code></td>
+</tr>
+<tr>
+<td><code>No.</code></td>
+<td>Kode Item (sesuai <code>Type</code>)</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>Diisi dari Item (bisa diubah)</td>
+</tr>
+<tr>
+<td><code>Location Code</code></td>
+<td>Gudang penerima (dari Header, bisa berbeda per baris)</td>
+</tr>
+<tr>
+<td><code>Quantity</code></td>
+<td>Qty pesanan</td>
+</tr>
+<tr>
+<td><code>Unit of Measure Code</code></td>
+<td>Satuan baris; default <code>Purchase Unit of Measure</code> atau <code>Base Unit of Measure</code> Item</td>
+</tr>
+<tr>
+<td><code>Qty. per Unit of Measure</code>, <code>Quantity (Base)</code></td>
+<td>Konversi ke satuan dasar</td>
+</tr>
+<tr>
+<td><code>Direct Unit Cost Excl. VAT</code></td>
+<td><strong>Harga beli per satuan</strong> (lihat bagian 5)</td>
+</tr>
+<tr>
+<td><code>Line Discount %</code>, <code>Line Discount Amount</code></td>
+<td>Diskon baris (lihat bagian 5)</td>
+</tr>
+<tr>
+<td><code>Line Amount</code></td>
+<td><code>Quantity × Direct Unit Cost − Line Discount Amount</code></td>
+</tr>
+<tr>
+<td><code>Allow Invoice Disc.</code>, <code>Inv. Discount Amount</code></td>
+<td>Ikut diskon faktur atau tidak, dan nilainya</td>
+</tr>
+<tr>
+<td><code>VAT %</code>, <code>Amount</code>, <code>Amount Including VAT</code></td>
+<td>Dihitung dari <code>VAT Posting Setup</code></td>
+</tr>
+<tr>
+<td><code>Expected Receipt Date</code>, <code>Planned Receipt Date</code></td>
+<td>Jadwal kedatangan</td>
+</tr>
+<tr>
+<td><code>Qty. to Receive</code></td>
+<td>Qty yang akan diterima pada <strong>Post berikutnya</strong></td>
+</tr>
+<tr>
+<td><code>Quantity Received</code></td>
+<td>Qty yang sudah diterima (hanya bertambah karena Post)</td>
+</tr>
+<tr>
+<td><code>Qty. to Invoice</code></td>
+<td>Qty yang akan ditagih pada Post berikutnya</td>
+</tr>
+<tr>
+<td><code>Quantity Invoiced</code></td>
+<td>Qty yang sudah ditagih</td>
+</tr>
+<tr>
+<td><code>Qty. Rcd. Not Invoiced</code></td>
+<td><code>Quantity Received − Quantity Invoiced</code></td>
+</tr>
+<tr>
+<td><code>Outstanding Quantity</code></td>
+<td><code>Quantity − Quantity Received</code></td>
+</tr>
+<tr>
+<td><code>Gen. Prod. Posting Group</code>, <code>VAT Prod. Posting Group</code></td>
+<td>Disalin dari Item</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-panduan-langkah-demi-langkah">4. Panduan Langkah demi Langkah</h2>
+<blockquote>
+<p><strong>Contoh data:</strong> Vendor <code>V00010 – PT Sumber Pangan</code>, Item <code>BRS-5KG – Beras Premium</code> (satuan dasar KG, satuan beli SAK = 25 KG), Location <code>GUDANG1</code>.</p>
+</blockquote>
+<h3 id="langkah-1-opsional-purchase-quote">Langkah 1 — (Opsional) Purchase Quote</h3>
+<ol>
+<li><strong>Search → Purchase Quotes → New.</strong></li>
+<li>Isi <code>Buy-from Vendor No.</code> = <code>V00010</code>, lalu tambahkan baris Item beserta <code>Quantity</code>.</li>
+<li>Setelah vendor menyetujui harga, pilih <strong>Home → Make Order</strong>. NAV membuat Purchase Order baru dari Quote tersebut (Quote tidak ikut diposting).</li>
+</ol>
+<h3 id="langkah-2-membuat-purchase-order">Langkah 2 — Membuat Purchase Order</h3>
+<ol>
+<li><strong>Search → Purchase Orders → New.</strong></li>
+<li>Pada <strong>header</strong>:</li>
+<li><code>Buy-from Vendor No.</code> = <code>V00010</code>. Perhatikan field lain terisi otomatis: <code>Payment Terms Code</code>, <code>Location Code</code>, <code>Currency Code</code>, Posting Group.</li>
+<li><code>Order Date</code>, <code>Posting Date</code>, <code>Expected Receipt Date</code>.</li>
+<li><code>Vendor Invoice No.</code> boleh diisi saat faktur vendor sudah ada.</li>
+<li>Pada <strong>Lines</strong>:</li>
+<li><code>Type = Item</code>, <code>No. = BRS-5KG</code>.</li>
+<li><code>Quantity = 100</code>, <code>Unit of Measure Code = SAK</code>.</li>
+<li>Periksa <code>Direct Unit Cost Excl. VAT</code> dan <code>Line Discount %</code>. Keduanya terisi otomatis jika ada Purchase Price / Purchase Line Discount yang cocok. Jika tidak, isi manual.</li>
+<li>Periksa <code>Location Code</code> pada setiap baris.</li>
+</ol>
+<h3 id="langkah-3-release">Langkah 3 — Release</h3>
+<p><strong>Home → Release</strong> → <code>Status</code> menjadi <code>Released</code>. Dokumen terkunci agar tidak diubah sembarangan.
+Untuk mengedit lagi: <strong>Home → Reopen</strong>.</p>
+<h3 id="langkah-4-post-receive-penerimaan-barang">Langkah 4 — Post Receive (Penerimaan Barang)</h3>
+<ol>
+<li>Pada baris, isi <code>Qty. to Receive</code> (default: seluruh sisa, kecuali <code>Default Qty. to Receive = Blank</code>).</li>
+<li><strong>Home → Post…</strong> (atau <strong>F9</strong>) → pilih <strong>Receive</strong> → OK.</li>
+<li>Hasil: <strong>Posted Purchase Receipt</strong> dibuat di tabel <code>Purch. Rcpt. Header</code> / <code>Purch. Rcpt. Line</code>. Pada Order, <code>Quantity Received</code> bertambah, <code>Outstanding Quantity</code> berkurang, dan <code>Qty. to Invoice</code> terisi senilai qty yang sudah diterima tetapi belum ditagih.</li>
+</ol>
+<h3 id="langkah-5-post-invoice-penagihan">Langkah 5 — Post Invoice (Penagihan)</h3>
+<ol>
+<li>Pastikan <code>Vendor Invoice No.</code> terisi.</li>
+<li>Pastikan <code>Qty. to Invoice</code> sesuai tagihan vendor, dan <code>Direct Unit Cost</code> sesuai harga di faktur.</li>
+<li><strong>Post…</strong> → pilih <strong>Invoice</strong> (atau <strong>Receive and Invoice</strong> bila barang dan faktur datang bersamaan).</li>
+<li>Hasil: <strong>Posted Purchase Invoice</strong> dibuat di <code>Purch. Inv. Header</code> / <code>Purch. Inv. Line</code>. <code>Quantity Invoiced</code> bertambah. Jika Order sudah diterima dan ditagih seluruhnya, Order hilang dari daftar.</li>
+</ol>
+<blockquote>
+<p><strong>Opsi Post pada pembelian:</strong> <code>Receive</code> · <code>Invoice</code> · <code>Receive and Invoice</code>.</p>
+</blockquote>
+<h3 id="langkah-6-contoh-pengiriman-parsial">Langkah 6 — Contoh Pengiriman Parsial</h3>
+<p>Order 100 SAK. Vendor mengirim dua kali, lalu mengirim satu faktur.</p>
+<table>
+<thead>
+<tr>
+<th>Kejadian</th>
+<th>Qty to Receive</th>
+<th>Quantity Received</th>
+<th>Outstanding Quantity</th>
+<th>Qty. Rcd. Not Invoiced</th>
+<th>Dokumen Terposting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order dibuat</td>
+<td>100</td>
+<td>0</td>
+<td>100</td>
+<td>0</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Post Receive 60</td>
+<td>60 → 40</td>
+<td>60</td>
+<td>40</td>
+<td>60</td>
+<td>Posted Receipt #1 (60)</td>
+</tr>
+<tr>
+<td>Post Receive 40</td>
+<td>40 → 0</td>
+<td>100</td>
+<td>0</td>
+<td>100</td>
+<td>Posted Receipt #2 (40)</td>
+</tr>
+<tr>
+<td>Post Invoice 100</td>
+<td>-</td>
+<td>100</td>
+<td>0</td>
+<td>0</td>
+<td>Posted Invoice #1 (100), merujuk ke kedua Receipt; Order dihapus</td>
+</tr>
+</tbody>
+</table>
+<h3 id="langkah-7-satu-faktur-untuk-beberapa-penerimaan-dokumen-invoice">Langkah 7 — Satu Faktur untuk Beberapa Penerimaan (Dokumen Invoice)</h3>
+<p>Jika Anda memakai dokumen <strong>Purchase Invoice</strong> (bukan Order) untuk menagih beberapa penerimaan sekaligus:
+1. <strong>Search → Purchase Invoices → New</strong>, isi <code>Buy-from Vendor No.</code> dan <code>Vendor Invoice No.</code>
+2. Pada ribbon <strong>Lines</strong>, pilih <strong>Functions → Get Receipt Lines</strong>.
+3. Centang baris Posted Receipt yang ditagih → OK. Baris Invoice terisi, merujuk ke Receipt asalnya.
+4. <strong>Post</strong>.</p>
+<h3 id="langkah-8-invoice-langsung-tanpa-order">Langkah 8 — Invoice Langsung Tanpa Order</h3>
+<p><strong>Purchase Invoices → New</strong> → isi baris Item → <strong>Post</strong>.
+Jika <code>Receipt on Invoice</code> aktif di Purchases &amp; Payables Setup, NAV otomatis membuat Posted Purchase Receipt. Jika tidak aktif, penerimaan tidak tercatat (untuk item inventory sebaiknya aktif).</p>
+<h3 id="langkah-9-biaya-tambahan-item-charge-setara-landed-cost">Langkah 9 — Biaya Tambahan (Item Charge, setara Landed Cost)</h3>
+<p>Ongkos angkut, bea, dan sejenisnya dapat dimasukkan sebagai baris <code>Type = Charge (Item)</code>, lalu dialokasikan ke Receipt/Item tertentu lewat <strong>Item Charge Assignment</strong>. Detail pengaruhnya pada nilai stok di luar cakupan manual ini.</p>
+<h3 id="langkah-10-pelunasan-vendor-payment">Langkah 10 — Pelunasan Vendor (Payment)</h3>
+<p>Setelah Posted Purchase Invoice terbentuk, NAV mencatat tagihan di <strong>Vendor Ledger Entry (25)</strong> (sub-ledger hutang, berbeda dari G/L). Entri ini <code>Open</code> sampai dilunasi.</p>
+<ol>
+<li><strong>Search → Payment Journals</strong> → pilih <em>Batch</em>.</li>
+<li>Baris baru: <code>Document Type = Payment</code>, <code>Account Type = Vendor</code>, <code>Account No. = V00010</code>, <code>Amount</code> sesuai pembayaran.</li>
+<li>Isi <code>Applies-to Doc. Type = Invoice</code> dan <code>Applies-to Doc. No. = (nomor Posted Purchase Invoice)</code>.</li>
+<li>Lengkapi akun bank (<code>Bal. Account</code>), yang ditentukan finance.</li>
+<li><strong>Post</strong>. Entri invoice berubah <code>Open = No</code> jika lunas.</li>
+</ol>
+<p>Alternatif: dari <strong>Vendor Ledger Entries → Apply Entries</strong> untuk mengaitkan pembayaran dan faktur yang sudah ada. Untuk pembayaran massal tersedia batch <em>Suggest Vendor Payments</em>.</p>
+<h3 id="langkah-11-retur-dan-koreksi">Langkah 11 — Retur dan Koreksi</h3>
+<table>
+<thead>
+<tr>
+<th>Situasi</th>
+<th>Cara</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Barang yang sudah diterima salah/rusak</td>
+<td><strong>Purchase Return Order</strong>: salin baris dari Posted Receipt/Invoice (<code>Get Posted Document Lines to Reverse</code>), lalu Post <strong>Ship</strong> (Return Shipment), kemudian <strong>Invoice</strong> (Credit Memo)</td>
+</tr>
+<tr>
+<td>Hanya salah tagih (harga/qty)</td>
+<td><strong>Purchase Credit Memo</strong> lalu buat Invoice baru yang benar</td>
+</tr>
+<tr>
+<td>Receipt salah dan belum ditagih</td>
+<td><strong>Undo Receipt</strong> pada Posted Purchase Receipt Lines (menghasilkan baris pembalik, tidak menghapus dokumen)</td>
+</tr>
+<tr>
+<td>Invoice salah total</td>
+<td>Pada Posted Purchase Invoice tersedia <strong>Correct</strong> / <strong>Cancel</strong> (membuat Credit Memo pembalik) sesuai kondisi</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-harga-dan-diskon-pembelian">5. Harga dan Diskon Pembelian</h2>
+<p>Berbeda dengan penjualan, pembelian <strong>tidak memiliki group</strong>. Harga dan diskon diatur <strong>per vendor</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Field utama</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purchase Price (7012)</strong></td>
+<td><code>Item No.</code>, <code>Vendor No.</code>, <code>Starting Date</code>, <code>Ending Date</code>, <code>Minimum Quantity</code>, <code>Unit of Measure Code</code>, <code>Currency Code</code>, <code>Variant Code</code>, <code>Direct Unit Cost</code></td>
+<td>Harga beli per vendor, dengan periode dan qty minimal</td>
+</tr>
+<tr>
+<td><strong>Purchase Line Discount (7014)</strong></td>
+<td><code>Item No.</code>, <code>Vendor No.</code>, <code>Starting Date</code>, <code>Ending Date</code>, <code>Minimum Quantity</code>, <code>Unit of Measure Code</code>, <code>Currency Code</code>, <code>Line Discount %</code></td>
+<td>Diskon baris per vendor</td>
+</tr>
+<tr>
+<td><strong>Vendor Invoice Disc. (24)</strong></td>
+<td><code>Code</code>, <code>Minimum Amount</code>, <code>Discount %</code></td>
+<td>Diskon faktur berdasarkan total</td>
+</tr>
+</tbody>
+</table>
+<p>Cara akses: <strong>Item Card → Purchase Prices / Line Discounts</strong> atau <strong>Vendor Card → Prices / Line Discounts</strong>.</p>
+<p>Aturan umum saat baris dibuat atau <code>Quantity</code> diubah:
+- Record yang berlaku harus memenuhi: <code>Vendor No.</code> cocok, <code>Starting Date</code> ≤ tanggal dokumen ≤ <code>Ending Date</code> (atau kosong), <code>Minimum Quantity</code> ≤ qty baris, satuan dan mata uang cocok.
+- Jika ada beberapa kandidat, NAV memilih yang paling menguntungkan (harga terendah / diskon tertinggi).
+- Jika tidak ada Purchase Price yang cocok, <code>Direct Unit Cost</code> diisi dari data default Item (umumnya <code>Last Direct Cost</code>) dan dapat diubah manual.</p>
+<hr />
+<h2 id="6-relasi-tabel-pembelian">6. Relasi Tabel Pembelian</h2>
+<h3 id="61-daftar-relasi">6.1 Daftar Relasi</h3>
+<table>
+<thead>
+<tr>
+<th>Dari (Tabel.Field)</th>
+<th>Ke (Tabel.Field)</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purchase Header.<code>Buy-from Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Header.<code>Pay-to Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Header.<code>Payment Terms Code</code></td>
+<td>Payment Terms.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Header.<code>Location Code</code></td>
+<td>Location.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Header.<code>Currency Code</code></td>
+<td>Currency.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Header.<code>Purchaser Code</code></td>
+<td>Salesperson/Purchaser.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Line.(<code>Document Type</code>, <code>Document No.</code>)</td>
+<td>Purchase Header.(<code>Document Type</code>, <code>No.</code>)</td>
+<td>Header → Lines (1:N)</td>
+</tr>
+<tr>
+<td>Purchase Line.<code>No.</code></td>
+<td>Item.<code>No.</code> (jika <code>Type = Item</code>)</td>
+<td>Relasi bersyarat</td>
+</tr>
+<tr>
+<td>Purchase Line.<code>Unit of Measure Code</code></td>
+<td>Item Unit of Measure.(<code>Item No.</code>, <code>Code</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>Purchase Line.<code>Location Code</code></td>
+<td>Location.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purch. Rcpt. Header.<code>Order No.</code></td>
+<td>Purchase Header.<code>No.</code> (Order)</td>
+<td>Receipt merujuk Order asal</td>
+</tr>
+<tr>
+<td>Purch. Rcpt. Line.<code>Document No.</code></td>
+<td>Purch. Rcpt. Header.<code>No.</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Purch. Inv. Header.<code>Order No.</code></td>
+<td>Purchase Header.<code>No.</code> (Order)</td>
+<td></td>
+</tr>
+<tr>
+<td>Purch. Inv. Line.<code>Receipt No.</code> / <code>Receipt Line No.</code></td>
+<td>Purch. Rcpt. Line.(<code>Document No.</code>, <code>Line No.</code>)</td>
+<td>Invoice merujuk Receipt yang ditagih</td>
+</tr>
+<tr>
+<td>Purch. Inv. Header.<code>Buy-from Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Vendor Ledger Entry.<code>Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td>Sub-ledger hutang</td>
+</tr>
+<tr>
+<td>Vendor Ledger Entry.<code>Document No.</code></td>
+<td>Purch. Inv. Header.<code>No.</code> (untuk <code>Document Type = Invoice</code>)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-tabel-dokumen-kerja-vs-terposting">6.2 Tabel Dokumen Kerja vs Terposting</h3>
+<table>
+<thead>
+<tr>
+<th>Dokumen kerja</th>
+<th>Tabel</th>
+<th>Dokumen terposting</th>
+<th>Tabel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purchase Order/Invoice Header</td>
+<td>Purchase Header (38)</td>
+<td>Posted Purchase Receipt Header</td>
+<td>Purch. Rcpt. Header (120)</td>
+</tr>
+<tr>
+<td>Purchase Order/Invoice Line</td>
+<td>Purchase Line (39)</td>
+<td>Posted Purchase Receipt Line</td>
+<td>Purch. Rcpt. Line (121)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Posted Purchase Invoice Header</td>
+<td>Purch. Inv. Header (122)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Posted Purchase Invoice Line</td>
+<td>Purch. Inv. Line (123)</td>
+</tr>
+<tr>
+<td>Purchase Credit Memo (header/line)</td>
+<td>Purchase Header / Line</td>
+<td>Posted Purchase Credit Memo Header</td>
+<td>Purch. Cr. Memo Hdr. (124)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Posted Purchase Credit Memo Line</td>
+<td>Purch. Cr. Memo Line (125)</td>
+</tr>
+<tr>
+<td>Purchase Return Order (header/line)</td>
+<td>Purchase Header / Line</td>
+<td>Posted Return Shipment Header</td>
+<td>Return Shipment Header (6650)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Posted Return Shipment Line</td>
+<td>Return Shipment Line (6651)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-er-diagram">6.3 ER Diagram</h3>
+<pre class="mermaid"><code>erDiagram
+    VENDOR ||--o{ PURCHASE_HEADER : "Buy-from Vendor No."
+    VENDOR ||--o{ PURCHASE_HEADER : "Pay-to Vendor No."
+    PURCHASE_HEADER ||--|{ PURCHASE_LINE : "Document Type + Document No."
+    ITEM ||--o{ PURCHASE_LINE : "No. (Type = Item)"
+    LOCATION ||--o{ PURCHASE_LINE : "Location Code"
+    PAYMENT_TERMS ||--o{ PURCHASE_HEADER : "Payment Terms Code"
+
+    PURCHASE_HEADER ||--o{ PURCH_RCPT_HEADER : "Order No. (hasil Post Receive)"
+    PURCH_RCPT_HEADER ||--|{ PURCH_RCPT_LINE : "Document No."
+    PURCHASE_HEADER ||--o{ PURCH_INV_HEADER : "Order No. (hasil Post Invoice)"
+    PURCH_INV_HEADER ||--|{ PURCH_INV_LINE : "Document No."
+    PURCH_RCPT_LINE ||--o{ PURCH_INV_LINE : "Receipt No. + Receipt Line No."
+
+    PURCHASE_HEADER ||--o{ RETURN_SHIPMENT_HEADER : "Return Order No."
+    RETURN_SHIPMENT_HEADER ||--|{ RETURN_SHIPMENT_LINE : "Document No."
+    PURCHASE_HEADER ||--o{ PURCH_CR_MEMO_HDR : "Return Order No."
+    PURCH_CR_MEMO_HDR ||--|{ PURCH_CR_MEMO_LINE : "Document No."
+
+    VENDOR ||--o{ VENDOR_LEDGER_ENTRY : "Vendor No."
+    PURCH_INV_HEADER ||--o| VENDOR_LEDGER_ENTRY : "Document No."</code></pre>
+<hr />
+<h2 id="7-daftar-error-umum-saat-posting-pembelian">7. Daftar Error Umum Saat Posting Pembelian</h2>
+<p>Teks pesan di bawah bersifat kurang lebih; versi/bahasa aplikasi bisa sedikit berbeda.</p>
+<table>
+<thead>
+<tr>
+<th>Pesan / Gejala</th>
+<th>Penyebab</th>
+<th>Solusi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Vendor Posting Group must have a value</em></td>
+<td>Master Vendor belum lengkap</td>
+<td>Lengkapi di Vendor Card</td>
+</tr>
+<tr>
+<td><em>Gen. Prod. Posting Group must have a value</em> / <em>Inventory Posting Group …</em></td>
+<td>Master Item belum lengkap</td>
+<td>Lengkapi di Item Card</td>
+</tr>
+<tr>
+<td><em>General Posting Setup does not exist</em> / <em>VAT Posting Setup does not exist</em></td>
+<td>Kombinasi posting group belum ada di setup</td>
+<td>Minta finance membuat record setup</td>
+</tr>
+<tr>
+<td><em>Posting Date is not within your range of allowed posting dates</em></td>
+<td>Tanggal di luar <code>Allow Posting From/To</code></td>
+<td>Ubah <code>Posting Date</code> atau minta admin memperbarui rentang</td>
+</tr>
+<tr>
+<td><em>Vendor Invoice No. must have a value</em></td>
+<td><code>Ext. Doc. No. Mandatory</code> aktif</td>
+<td>Isi <code>Vendor Invoice No.</code></td>
+</tr>
+<tr>
+<td><em>Location Code must have a value</em></td>
+<td><code>Location Mandatory</code> aktif di Inventory Setup</td>
+<td>Isi <code>Location Code</code> di setiap baris</td>
+</tr>
+<tr>
+<td>Tidak bisa Post Invoice melebihi qty diterima</td>
+<td><code>Qty. to Invoice</code> &gt; <code>Quantity Received</code></td>
+<td>Post Receive dulu atau kurangi <code>Qty. to Invoice</code></td>
+</tr>
+<tr>
+<td>Dokumen tidak bisa diedit</td>
+<td><code>Status = Released</code></td>
+<td><strong>Reopen</strong></td>
+</tr>
+<tr>
+<td>Vendor tidak bisa dipilih</td>
+<td><code>Blocked = All</code></td>
+<td>Cek status blokir di Vendor Card</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-ringkasan-perbandingan-dengan-erpnext">8. Ringkasan Perbandingan dengan ERPNext</h2>
+<table>
+<thead>
+<tr>
+<th>Langkah</th>
+<th>ERPNext</th>
+<th>NAV 2017</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Penawaran</td>
+<td>Supplier Quotation</td>
+<td>Purchase Quote → <strong>Make Order</strong></td>
+</tr>
+<tr>
+<td>Pesanan</td>
+<td>Purchase Order → Submit</td>
+<td>Purchase Order → <strong>Release</strong></td>
+</tr>
+<tr>
+<td>Penerimaan</td>
+<td>Create → Purchase Receipt</td>
+<td><strong>Post → Receive</strong> pada Order yang sama</td>
+</tr>
+<tr>
+<td>Penagihan</td>
+<td>Create → Purchase Invoice</td>
+<td><strong>Post → Invoice</strong> pada Order yang sama</td>
+</tr>
+<tr>
+<td>Parsial</td>
+<td>Receipt baru per sebagian</td>
+<td>Ubah <code>Qty. to Receive</code>, Post berulang</td>
+</tr>
+<tr>
+<td>Menagih beberapa receipt sekaligus</td>
+<td>Purchase Invoice dari beberapa receipt</td>
+<td>Dokumen Purchase Invoice + <strong>Get Receipt Lines</strong></td>
+</tr>
+<tr>
+<td>Pembayaran</td>
+<td>Payment Entry</td>
+<td>Payment Journal + <code>Applies-to Doc.</code></td>
+</tr>
+<tr>
+<td>Retur</td>
+<td>Purchase Return</td>
+<td>Return Order / Credit Memo</td>
+</tr>
+<tr>
+<td>Biaya tambahan</td>
+<td>Landed Cost Voucher</td>
+<td><code>Charge (Item)</code> + Item Charge Assignment</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Sebelumnya: <a href="../../master-data/master-data/">Master Data</a> · Lanjut ke: <a href="../selling-flow/">Selling Flow</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../js/mermaid.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

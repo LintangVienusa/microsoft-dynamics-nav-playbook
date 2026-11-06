@@ -1,0 +1,2454 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Practical Guide to Understanding Microsoft Dynamics NAV if You are ERPNext Implementor.">
+      
+      
+      
+      
+        <link rel="prev" href="../../introduction/pengantar-dan-pemetaan-erpnext/">
+      
+      
+        <link rel="next" href="../../transaction/purchase-flow/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Master Data - Microsoft Dynamics NAV Playbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#master-data-dan-setup-dasar-nav-2017" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microsoft Dynamics NAV Playbook" class="md-header__button md-logo" aria-label="Microsoft Dynamics NAV Playbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microsoft Dynamics NAV Playbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Master Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/pengantar-dan-pemetaan-erpnext/" class="md-tabs__link">
+          
+  
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Master Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../transaction/purchase-flow/" class="md-tabs__link">
+          
+  
+  
+  Transaction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/customer-price-group-dan-discount-group/" class="md-tabs__link">
+          
+  
+  
+  Miscellaneous
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microsoft Dynamics NAV Playbook" class="md-nav__button md-logo" aria-label="Microsoft Dynamics NAV Playbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Microsoft Dynamics NAV Playbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/pengantar-dan-pemetaan-erpnext/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Data
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-urutan-penyiapan-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Urutan Penyiapan Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setup-penomoran-dan-pengaturan-modul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setup Penomoran dan Pengaturan Modul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Setup Penomoran dan Pengaturan Modul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-no-series-padanan-naming-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 No. Series (padanan Naming Series)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sales-receivables-setup-311" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Sales &amp; Receivables Setup (311)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-purchases-payables-setup-312" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Purchases &amp; Payables Setup (312)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-item-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Item (Barang)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Item (Barang)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-field-penting-pada-item-card-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Field Penting pada Item Card (27)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-unit-of-measure-dan-konversi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Unit of Measure dan Konversi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-pengelompokan-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Pengelompokan Barang
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-data-pelengkap-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Data Pelengkap Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-customer-pelanggan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Customer (Pelanggan)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Customer (Pelanggan)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-field-penting-pada-customer-card-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Field Penting pada Customer Card (18)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-data-pelengkap-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Data Pelengkap Customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vendor-pemasok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Vendor (Pemasok)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Vendor (Pemasok)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-field-penting-pada-vendor-card-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Field Penting pada Vendor Card (23)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-pelengkap-vendor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Data Pelengkap Vendor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-master-pendukung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Master Pendukung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-posting-group-hanya-sebagai-prasyarat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Posting Group (Hanya sebagai Prasyarat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-relasi-tabel-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Relasi Tabel Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Relasi Tabel Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-daftar-relasi-tablerelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Daftar Relasi (TableRelation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-er-diagram-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 ER Diagram Master
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-checklist-sebelum-transaksi-pertama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Checklist Sebelum Transaksi Pertama
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-perbandingan-singkat-dengan-erpnext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Perbandingan Singkat dengan ERPNext
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transaction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transaction/purchase-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Purchasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transaction/selling-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Selling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Miscellaneous
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/customer-price-group-dan-discount-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Price and Discount
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-urutan-penyiapan-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Urutan Penyiapan Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setup-penomoran-dan-pengaturan-modul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setup Penomoran dan Pengaturan Modul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Setup Penomoran dan Pengaturan Modul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-no-series-padanan-naming-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 No. Series (padanan Naming Series)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sales-receivables-setup-311" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Sales &amp; Receivables Setup (311)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-purchases-payables-setup-312" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Purchases &amp; Payables Setup (312)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-item-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Item (Barang)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Item (Barang)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-field-penting-pada-item-card-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Field Penting pada Item Card (27)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-unit-of-measure-dan-konversi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Unit of Measure dan Konversi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-pengelompokan-barang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Pengelompokan Barang
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-data-pelengkap-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Data Pelengkap Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-customer-pelanggan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Customer (Pelanggan)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Customer (Pelanggan)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-field-penting-pada-customer-card-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Field Penting pada Customer Card (18)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-data-pelengkap-customer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Data Pelengkap Customer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vendor-pemasok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Vendor (Pemasok)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Vendor (Pemasok)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-field-penting-pada-vendor-card-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Field Penting pada Vendor Card (23)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-pelengkap-vendor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Data Pelengkap Vendor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-master-pendukung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Master Pendukung
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-posting-group-hanya-sebagai-prasyarat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Posting Group (Hanya sebagai Prasyarat)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-relasi-tabel-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Relasi Tabel Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Relasi Tabel Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-daftar-relasi-tablerelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Daftar Relasi (TableRelation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-er-diagram-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 ER Diagram Master
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-checklist-sebelum-transaksi-pertama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Checklist Sebelum Transaksi Pertama
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-perbandingan-singkat-dengan-erpnext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Perbandingan Singkat dengan ERPNext
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="master-data-dan-setup-dasar-nav-2017">Master Data dan Setup Dasar (NAV 2017)</h1>
+<blockquote>
+<p>Pasangan ERPNext: Item, Customer, Supplier, Warehouse, Payment Terms, Naming Series, Selling/Buying Settings.</p>
+<p>Cakupan: hanya data yang dibutuhkan oleh <strong>Purchasing Flow</strong> dan <strong>Selling Flow</strong>. Detail akun dan costing tidak dibahas.</p>
+</blockquote>
+<hr />
+<h2 id="1-urutan-penyiapan-data">1. Urutan Penyiapan Data</h2>
+<p>Transaksi pertama baru bisa diposting jika data dasar berikut tersedia. Urutan di bawah mengikuti ketergantungan antartabel.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["1. No. Series&lt;br/&gt;(penomoran dokumen)"] --&gt; B["2. Sales &amp; Receivables Setup&lt;br/&gt;Purchases &amp; Payables Setup"]
+    B --&gt; C["3. Master pendukung:&lt;br/&gt;Payment Terms, Payment Method,&lt;br/&gt;Shipment Method, Location,&lt;br/&gt;Unit of Measure, Currency,&lt;br/&gt;Salesperson/Purchaser"]
+    C --&gt; D["4. Posting Group&lt;br/&gt;(dikonfigurasi finance):&lt;br/&gt;Customer/Vendor/Inventory Posting Group,&lt;br/&gt;Gen. Bus./Prod., VAT Bus./Prod.,&lt;br/&gt;General &amp; VAT Posting Setup"]
+    D --&gt; E["5. Item Category, Product Group,&lt;br/&gt;Item Discount Group"]
+    E --&gt; F["6. Item + Item Unit of Measure"]
+    D --&gt; G["7. Customer Price Group,&lt;br/&gt;Customer Discount Group"]
+    G --&gt; H["8. Customer + Ship-to Address"]
+    D --&gt; I["9. Vendor + Order Address"]
+    F --&gt; J["10. Sales Price, Sales Line Discount,&lt;br/&gt;Purchase Price, Purchase Line Discount"]
+    H --&gt; J
+    I --&gt; J</code></pre>
+<hr />
+<h2 id="2-setup-penomoran-dan-pengaturan-modul">2. Setup Penomoran dan Pengaturan Modul</h2>
+<h3 id="21-no-series-padanan-naming-series">2.1 No. Series (padanan Naming Series)</h3>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Isi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No. Series (308)</strong></td>
+<td><code>Code</code>, <code>Description</code>, <code>Default Nos.</code>, <code>Manual Nos.</code>, <code>Date Order</code></td>
+</tr>
+<tr>
+<td><strong>No. Series Line (309)</strong></td>
+<td><code>Series Code</code>, <code>Line No.</code>, <code>Starting Date</code>, <code>Starting No.</code>, <code>Ending No.</code>, <code>Warning No.</code>, <code>Increment-by No.</code>, <code>Last No. Used</code>, <code>Open</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cara kerja singkat:
+- <code>Default Nos.</code> = dicentang jika nomor otomatis (tanpa input manual).
+- <code>Manual Nos.</code> = dicentang jika pengguna boleh mengetik nomor sendiri.
+- Satu series bisa punya beberapa baris berdasarkan <code>Starting Date</code> (misalnya reset tahunan).</p>
+<p>Contoh series yang lazim dibuat:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Starting No.</th>
+<th>Dipakai untuk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C</code></td>
+<td>Customer</td>
+<td>C00001</td>
+<td>Customer Nos.</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>Vendor</td>
+<td>V00001</td>
+<td>Vendor Nos.</td>
+</tr>
+<tr>
+<td><code>S-QUO</code></td>
+<td>Sales Quote</td>
+<td>SQ-00001</td>
+<td>Quote Nos. (penjualan)</td>
+</tr>
+<tr>
+<td><code>S-ORD</code></td>
+<td>Sales Order</td>
+<td>SO-00001</td>
+<td>Order Nos. (penjualan)</td>
+</tr>
+<tr>
+<td><code>S-SHPT+</code></td>
+<td>Posted Sales Shipment</td>
+<td>PSH-00001</td>
+<td>Posted Shipment Nos.</td>
+</tr>
+<tr>
+<td><code>S-INV+</code></td>
+<td>Posted Sales Invoice</td>
+<td>PSI-00001</td>
+<td>Posted Invoice Nos.</td>
+</tr>
+<tr>
+<td><code>P-ORD</code></td>
+<td>Purchase Order</td>
+<td>PO-00001</td>
+<td>Order Nos. (pembelian)</td>
+</tr>
+<tr>
+<td><code>P-RCPT</code></td>
+<td>Posted Purchase Receipt</td>
+<td>PPR-00001</td>
+<td>Posted Receipt Nos.</td>
+</tr>
+<tr>
+<td><code>P-INV+</code></td>
+<td>Posted Purchase Invoice</td>
+<td>PPI-00001</td>
+<td>Posted Invoice Nos.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-sales-receivables-setup-311">2.2 Sales &amp; Receivables Setup (311)</h3>
+<p>Cari lewat <strong>Search → Sales &amp; Receivables Setup</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Customer Nos.</code></td>
+<td>Series untuk Customer baru</td>
+</tr>
+<tr>
+<td><code>Quote Nos.</code> / <code>Blanket Order Nos.</code> / <code>Order Nos.</code> / <code>Return Order Nos.</code></td>
+<td>Series untuk dokumen kerja per <code>Document Type</code></td>
+</tr>
+<tr>
+<td><code>Invoice Nos.</code> / <code>Credit Memo Nos.</code></td>
+<td>Series untuk dokumen <em>Sales Invoice</em> / <em>Sales Credit Memo</em> (langsung, tanpa Order)</td>
+</tr>
+<tr>
+<td><code>Posted Shipment Nos.</code> / <code>Posted Invoice Nos.</code> / <code>Posted Credit Memo Nos.</code> / <code>Posted Return Receipt Nos.</code></td>
+<td>Series untuk dokumen terposting</td>
+</tr>
+<tr>
+<td><code>Credit Warnings</code></td>
+<td>Peringatan saat input: <em>Both Warnings, Credit Limit, Overdue Balance, No Warning</em></td>
+</tr>
+<tr>
+<td><code>Stockout Warning</code></td>
+<td>Peringatan jika qty melebihi stok tersedia</td>
+</tr>
+<tr>
+<td><code>Shipment on Invoice</code></td>
+<td>Jika dicentang, posting <em>Sales Invoice</em> langsung membuat Posted Sales Shipment</td>
+</tr>
+<tr>
+<td><code>Return Receipt on Credit Memo</code></td>
+<td>Idem untuk Sales Credit Memo → Return Receipt</td>
+</tr>
+<tr>
+<td><code>Calc. Inv. Discount</code></td>
+<td>Hitung invoice discount otomatis</td>
+</tr>
+<tr>
+<td><code>Archive Quotes and Orders</code></td>
+<td>Arsipkan Quote/Order saat dihapus atau selesai</td>
+</tr>
+<tr>
+<td><code>Default Posting Date</code></td>
+<td><code>Work Date</code> atau <code>No Date</code></td>
+</tr>
+<tr>
+<td><code>Default Qty. to Ship</code></td>
+<td><code>Remainder</code> (isi otomatis sisa) atau <code>Blank</code> (isi manual)</td>
+</tr>
+<tr>
+<td><code>Ext. Doc. No. Mandatory</code></td>
+<td>Wajib isi <code>External Document No.</code> (misalnya nomor PO pelanggan)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-purchases-payables-setup-312">2.3 Purchases &amp; Payables Setup (312)</h3>
+<p>Cari lewat <strong>Search → Purchases &amp; Payables Setup</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vendor Nos.</code></td>
+<td>Series untuk Vendor baru</td>
+</tr>
+<tr>
+<td><code>Quote Nos.</code> / <code>Blanket Order Nos.</code> / <code>Order Nos.</code> / <code>Return Order Nos.</code></td>
+<td>Series dokumen kerja pembelian</td>
+</tr>
+<tr>
+<td><code>Invoice Nos.</code> / <code>Credit Memo Nos.</code></td>
+<td>Series untuk <em>Purchase Invoice</em> / <em>Purchase Credit Memo</em> langsung</td>
+</tr>
+<tr>
+<td><code>Posted Receipt Nos.</code> / <code>Posted Invoice Nos.</code> / <code>Posted Credit Memo Nos.</code> / <code>Posted Return Shpt. Nos.</code></td>
+<td>Series dokumen terposting</td>
+</tr>
+<tr>
+<td><code>Receipt on Invoice</code></td>
+<td>Posting <em>Purchase Invoice</em> langsung membuat Posted Purchase Receipt</td>
+</tr>
+<tr>
+<td><code>Return Shipment on Credit Memo</code></td>
+<td>Idem untuk Purchase Credit Memo → Return Shipment</td>
+</tr>
+<tr>
+<td><code>Ext. Doc. No. Mandatory</code></td>
+<td>Wajib isi <code>Vendor Invoice No.</code> / <code>Vendor Cr. Memo No.</code></td>
+</tr>
+<tr>
+<td><code>Calc. Inv. Discount</code></td>
+<td>Hitung invoice discount otomatis</td>
+</tr>
+<tr>
+<td><code>Default Qty. to Receive</code></td>
+<td><code>Remainder</code> atau <code>Blank</code></td>
+</tr>
+<tr>
+<td><code>Invoice Rounding</code> / <code>Allow VAT Difference</code></td>
+<td>Pembulatan dan toleransi selisih pajak</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-item-barang">3. Item (Barang)</h2>
+<p>Cari lewat <strong>Search → Items</strong>, lalu <strong>New</strong>.</p>
+<h3 id="31-field-penting-pada-item-card-27">3.1 Field Penting pada Item Card (27)</h3>
+<table>
+<thead>
+<tr>
+<th>Kelompok</th>
+<th>Field</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Umum</td>
+<td><code>No.</code></td>
+<td>Kode barang (otomatis atau manual sesuai series)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Description</code></td>
+<td>Nama barang</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Type</code></td>
+<td><code>Inventory</code> (barang stok) atau <code>Service</code> (jasa, tanpa stok)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Base Unit of Measure</code></td>
+<td>Satuan dasar. Setelah ada transaksi, <strong>sebaiknya tidak diubah</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Item Category Code</code>, <code>Product Group Code</code></td>
+<td>Klasifikasi barang</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Blocked</code></td>
+<td>Jika dicentang, barang tidak bisa dipakai di transaksi</td>
+</tr>
+<tr>
+<td>Penagihan</td>
+<td><code>Costing Method</code></td>
+<td>FIFO, LIFO, Specific, Average, Standard (detail costing di luar cakupan)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Unit Cost</code></td>
+<td>Biaya per satuan (diisi manual untuk Standard, otomatis untuk metode lain)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Unit Price</code></td>
+<td><strong>Harga jual standar</strong> (cadangan jika tidak ada Sales Price yang cocok)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Price/Profit Calculation</code></td>
+<td>Cara hitung hubungan harga, profit %, dan cost</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Gen. Prod. Posting Group</code></td>
+<td>Wajib untuk transaksi</td>
+</tr>
+<tr>
+<td></td>
+<td><code>VAT Prod. Posting Group</code></td>
+<td>Wajib untuk transaksi</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Inventory Posting Group</code></td>
+<td>Wajib untuk <code>Type = Inventory</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Item Disc. Group</code></td>
+<td>Kelompok diskon barang (dipakai di <strong>Sales Line Discount</strong>, lihat file 04)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Allow Invoice Disc.</code></td>
+<td>Apakah barang ikut dalam perhitungan invoice discount</td>
+</tr>
+<tr>
+<td>Replenishment</td>
+<td><code>Vendor No.</code></td>
+<td>Vendor utama</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Vendor Item No.</code></td>
+<td>Kode barang di sisi vendor</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Replenishment System</code></td>
+<td><code>Purchase</code>, <code>Prod. Order</code>, atau <code>Assembly</code></td>
+</tr>
+<tr>
+<td>Satuan</td>
+<td><code>Sales Unit of Measure</code></td>
+<td>Satuan default pada Sales Line</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Purchase Unit of Measure</code></td>
+<td>Satuan default pada Purchase Line</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Pengelompokan FastTab di layar dapat sedikit berbeda antarbuild. Yang penting adalah nama field-nya.</p>
+<p><strong>Item Tracking (lot / serial / tanggal kedaluwarsa)</strong> diatur lewat field <code>Item Tracking Code</code>. Fitur ini relevan untuk barang berumur simpan, tetapi pembahasannya di luar manual ini.</p>
+</blockquote>
+<h3 id="32-unit-of-measure-dan-konversi">3.2 Unit of Measure dan Konversi</h3>
+<p>Padanan <em>UOM Conversion Detail</em> di ERPNext.</p>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit of Measure (204)</strong></td>
+<td>Daftar satuan: <code>Code</code> (KG, SAK, KRG, PCS), <code>Description</code></td>
+</tr>
+<tr>
+<td><strong>Item Unit of Measure (5404)</strong></td>
+<td>Satuan per Item: <code>Item No.</code>, <code>Code</code>, <code>Qty. per Unit of Measure</code></td>
+</tr>
+</tbody>
+</table>
+<p>Contoh untuk item <code>BRS-5KG</code> dengan <code>Base Unit of Measure = KG</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Item No.</th>
+<th>Code</th>
+<th>Qty. per Unit of Measure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BRS-5KG</td>
+<td>KG</td>
+<td>1</td>
+</tr>
+<tr>
+<td>BRS-5KG</td>
+<td>SAK</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<p>Jika Purchase Line memakai <code>SAK</code> dengan <code>Quantity = 4</code>, maka <code>Quantity (Base)</code> = 4 × 25 = <strong>100 KG</strong>. Field <code>Qty. per Unit of Measure</code> disalin ke baris transaksi dan menjadi dasar konversi.</p>
+<h3 id="33-pengelompokan-barang">3.3 Pengelompokan Barang</h3>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Item Category (5722)</strong></td>
+<td>Kategori utama barang</td>
+</tr>
+<tr>
+<td><strong>Product Group (5723)</strong></td>
+<td>Subkelompok di bawah kategori (pada versi 2017)</td>
+</tr>
+<tr>
+<td><strong>Item Discount Group (341)</strong></td>
+<td>Kelompok untuk aturan diskon (bukan kategori laporan)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-data-pelengkap-item">3.4 Data Pelengkap Item</h3>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Fungsi</th>
+<th>Padanan ERPNext</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Item Vendor (99)</strong></td>
+<td>Daftar vendor alternatif per item, lengkap dengan <code>Vendor Item No.</code> dan <code>Lead Time Calculation</code></td>
+<td>Item Supplier</td>
+</tr>
+<tr>
+<td><strong>Item Cross Reference (5717)</strong></td>
+<td>Kode item milik customer/vendor yang dipetakan ke kode item Anda</td>
+<td>Item Customer Detail / Supplier Item Code</td>
+</tr>
+<tr>
+<td><strong>Item Variant (5401)</strong></td>
+<td>Varian (ukuran, warna)</td>
+<td>Item Variant</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-customer-pelanggan">4. Customer (Pelanggan)</h2>
+<p>Cari lewat <strong>Search → Customers</strong>, lalu <strong>New</strong>.</p>
+<h3 id="41-field-penting-pada-customer-card-18">4.1 Field Penting pada Customer Card (18)</h3>
+<table>
+<thead>
+<tr>
+<th>Kelompok</th>
+<th>Field</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Umum</td>
+<td><code>No.</code>, <code>Name</code>, <code>Address</code>, <code>City</code>, <code>Phone No.</code>, <code>E-Mail</code></td>
+<td>Identitas</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Salesperson Code</code></td>
+<td>Sales yang menangani</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Blocked</code></td>
+<td><code>(kosong)</code>, <code>Ship</code>, <code>Invoice</code>, atau <code>All</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>Credit Limit (LCY)</code></td>
+<td>Batas piutang; dicek sesuai <code>Credit Warnings</code></td>
+</tr>
+<tr>
+<td>Penagihan</td>
+<td><code>Bill-to Customer No.</code></td>
+<td>Jika tagihan dikirim ke customer lain (kantor pusat)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Customer Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Gen. Bus. Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><code>VAT Bus. Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><code>Customer Price Group</code></strong></td>
+<td>Kelompok harga (lihat file 04)</td>
+</tr>
+<tr>
+<td></td>
+<td><strong><code>Customer Disc. Group</code></strong></td>
+<td>Kelompok diskon (lihat file 04)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Allow Line Disc.</code></td>
+<td>Izinkan diskon baris untuk customer ini</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Invoice Disc. Code</code></td>
+<td>Kode tabel diskon faktur (<code>Cust. Invoice Disc.</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Prices Including VAT</code></td>
+<td>Harga di dokumen sudah termasuk pajak</td>
+</tr>
+<tr>
+<td>Pembayaran</td>
+<td><code>Payment Terms Code</code></td>
+<td>Syarat pembayaran</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Payment Method Code</code></td>
+<td>Metode bayar</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Application Method</code></td>
+<td><code>Manual</code> atau <code>Apply to Oldest</code> (cara pelunasan invoice)</td>
+</tr>
+<tr>
+<td>Pengiriman</td>
+<td><code>Location Code</code></td>
+<td>Gudang default</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Shipment Method Code</code></td>
+<td>Metode pengiriman</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Combine Shipments</code></td>
+<td>Boleh digabung saat penagihan massal</td>
+</tr>
+<tr>
+<td>Perdagangan luar negeri</td>
+<td><code>Currency Code</code></td>
+<td>Kosong = mata uang lokal (LCY)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-data-pelengkap-customer">4.2 Data Pelengkap Customer</h3>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ship-to Address (222)</strong></td>
+<td>Alamat kirim tambahan per customer (<code>Customer No.</code> + <code>Code</code>)</td>
+</tr>
+<tr>
+<td><strong>Customer Bank Account</strong></td>
+<td>Rekening bank customer</td>
+</tr>
+<tr>
+<td><strong>Cust. Invoice Disc. (19)</strong></td>
+<td>Aturan diskon faktur berdasarkan nilai minimal</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-vendor-pemasok">5. Vendor (Pemasok)</h2>
+<p>Cari lewat <strong>Search → Vendors</strong>, lalu <strong>New</strong>.</p>
+<h3 id="51-field-penting-pada-vendor-card-23">5.1 Field Penting pada Vendor Card (23)</h3>
+<table>
+<thead>
+<tr>
+<th>Kelompok</th>
+<th>Field</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Umum</td>
+<td><code>No.</code>, <code>Name</code>, <code>Address</code>, <code>Phone No.</code></td>
+<td>Identitas</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Purchaser Code</code></td>
+<td>Petugas pembelian</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Blocked</code></td>
+<td><code>(kosong)</code>, <code>Payment</code>, atau <code>All</code></td>
+</tr>
+<tr>
+<td>Penagihan</td>
+<td><code>Pay-to Vendor No.</code></td>
+<td>Jika pembayaran ke vendor lain</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Vendor Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Gen. Bus. Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><code>VAT Bus. Posting Group</code></td>
+<td>Wajib</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Invoice Disc. Code</code></td>
+<td>Kode diskon faktur vendor</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Prices Including VAT</code></td>
+<td>Harga vendor sudah termasuk pajak</td>
+</tr>
+<tr>
+<td>Pembayaran</td>
+<td><code>Payment Terms Code</code>, <code>Payment Method Code</code></td>
+<td>Syarat dan metode bayar</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Application Method</code></td>
+<td><code>Manual</code> atau <code>Apply to Oldest</code></td>
+</tr>
+<tr>
+<td>Penerimaan</td>
+<td><code>Location Code</code></td>
+<td>Gudang penerimaan default</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Lead Time Calculation</code></td>
+<td>Estimasi waktu kirim vendor</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Currency Code</code></td>
+<td>Kosong = mata uang lokal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-data-pelengkap-vendor">5.2 Data Pelengkap Vendor</h3>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Order Address (224)</strong></td>
+<td>Alamat vendor alternatif untuk Purchase Order</td>
+</tr>
+<tr>
+<td><strong>Vendor Bank Account</strong></td>
+<td>Rekening bank vendor</td>
+</tr>
+<tr>
+<td><strong>Vendor Invoice Disc. (24)</strong></td>
+<td>Aturan diskon faktur vendor</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Catatan:</strong> NAV standar <strong>tidak</strong> memiliki <em>Vendor Price Group</em> maupun <em>Vendor Discount Group</em>. Harga dan diskon pembelian diatur per vendor lewat <strong>Purchase Price</strong> dan <strong>Purchase Line Discount</strong> (lihat file 02 dan 04).</p>
+</blockquote>
+<hr />
+<h2 id="6-master-pendukung">6. Master Pendukung</h2>
+<table>
+<thead>
+<tr>
+<th>Tabel</th>
+<th>Field utama</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Payment Terms (3)</strong></td>
+<td><code>Code</code>, <code>Due Date Calculation</code>, <code>Discount Date Calculation</code>, <code>Discount %</code></td>
+<td>Menghitung <code>Due Date</code> dokumen. Contoh: <code>30D</code> = jatuh tempo 30 hari</td>
+</tr>
+<tr>
+<td><strong>Payment Method (289)</strong></td>
+<td><code>Code</code>, <code>Description</code></td>
+<td>Metode pembayaran (tunai, transfer)</td>
+</tr>
+<tr>
+<td><strong>Shipment Method (10)</strong></td>
+<td><code>Code</code>, <code>Description</code></td>
+<td>Cara pengiriman (FOB, CIF, dll.)</td>
+</tr>
+<tr>
+<td><strong>Location (14)</strong></td>
+<td><code>Code</code>, <code>Name</code>, <code>Require Receive</code>, <code>Require Shipment</code>, <code>Require Put-away</code>, <code>Require Pick</code>, <code>Bin Mandatory</code></td>
+<td>Gudang. Flow di manual ini mengasumsikan <code>Require *</code> <strong>tidak dicentang</strong> (proses sederhana)</td>
+</tr>
+<tr>
+<td><strong>Salesperson/Purchaser (13)</strong></td>
+<td><code>Code</code>, <code>Name</code>, <code>Commission %</code></td>
+<td>Pelaksana penjualan/pembelian</td>
+</tr>
+<tr>
+<td><strong>Currency (4)</strong></td>
+<td><code>Code</code>, <code>Description</code> (+ Exchange Rate)</td>
+<td>Mata uang asing</td>
+</tr>
+<tr>
+<td><strong>VAT Posting Setup (325)</strong></td>
+<td><code>VAT Bus. Posting Group</code>, <code>VAT Prod. Posting Group</code>, <code>VAT %</code>, <code>VAT Calculation Type</code></td>
+<td>Persentase dan jenis hitung pajak</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Catatan Location:</strong> Jika <code>Require Receive</code> / <code>Require Shipment</code> dicentang, NAV mewajibkan dokumen gudang (<em>Warehouse Receipt</em> / <em>Warehouse Shipment</em>) sebelum posting. Itu masuk ke Warehouse Management dan tidak dibahas di sini.</p>
+</blockquote>
+<hr />
+<h2 id="7-posting-group-hanya-sebagai-prasyarat">7. Posting Group (Hanya sebagai Prasyarat)</h2>
+<p>Tabel berikut harus sudah <strong>terisi oleh tim finance</strong> agar transaksi dapat diposting. Isi akunnya tidak dibahas di manual ini.</p>
+<table>
+<thead>
+<tr>
+<th>Posting Group</th>
+<th>Dipakai oleh</th>
+<th>Tabel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Customer Posting Group</code></td>
+<td>Customer</td>
+<td>Customer Posting Group (92)</td>
+</tr>
+<tr>
+<td><code>Vendor Posting Group</code></td>
+<td>Vendor</td>
+<td>Vendor Posting Group (93)</td>
+</tr>
+<tr>
+<td><code>Inventory Posting Group</code></td>
+<td>Item</td>
+<td>Inventory Posting Group (94)</td>
+</tr>
+<tr>
+<td><code>Gen. Bus. Posting Group</code></td>
+<td>Customer, Vendor</td>
+<td>Gen. Business Posting Group (250)</td>
+</tr>
+<tr>
+<td><code>Gen. Prod. Posting Group</code></td>
+<td>Item</td>
+<td>Gen. Product Posting Group (251)</td>
+</tr>
+<tr>
+<td><code>VAT Bus. Posting Group</code></td>
+<td>Customer, Vendor</td>
+<td>VAT Business Posting Group (323)</td>
+</tr>
+<tr>
+<td><code>VAT Prod. Posting Group</code></td>
+<td>Item</td>
+<td>VAT Product Posting Group (324)</td>
+</tr>
+</tbody>
+</table>
+<p>Pasangan yang harus tersedia saat posting:</p>
+<pre class="mermaid"><code>flowchart LR
+    C["Customer / Vendor&lt;br/&gt;Gen. Bus. Posting Group"] --&gt; GPS["General Posting Setup&lt;br/&gt;(Gen. Bus. + Gen. Prod.)"]
+    I["Item&lt;br/&gt;Gen. Prod. Posting Group"] --&gt; GPS
+    C2["Customer / Vendor&lt;br/&gt;VAT Bus. Posting Group"] --&gt; VPS["VAT Posting Setup&lt;br/&gt;(VAT Bus. + VAT Prod.)&lt;br/&gt;berisi VAT %"]
+    I2["Item&lt;br/&gt;VAT Prod. Posting Group"] --&gt; VPS</code></pre>
+<hr />
+<h2 id="8-relasi-tabel-master">8. Relasi Tabel Master</h2>
+<h3 id="81-daftar-relasi-tablerelation">8.1 Daftar Relasi (TableRelation)</h3>
+<table>
+<thead>
+<tr>
+<th>Dari (Tabel.Field)</th>
+<th>Ke (Tabel.Field)</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer.<code>Payment Terms Code</code></td>
+<td>Payment Terms.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Payment Method Code</code></td>
+<td>Payment Method.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Shipment Method Code</code></td>
+<td>Shipment Method.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Location Code</code></td>
+<td>Location.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Salesperson Code</code></td>
+<td>Salesperson/Purchaser.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Currency Code</code></td>
+<td>Currency.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Customer Price Group</code></td>
+<td>Customer Price Group.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Customer Disc. Group</code></td>
+<td>Customer Discount Group.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Customer.<code>Bill-to Customer No.</code></td>
+<td>Customer.<code>No.</code></td>
+<td>Relasi ke diri sendiri</td>
+</tr>
+<tr>
+<td>Ship-to Address.<code>Customer No.</code></td>
+<td>Customer.<code>No.</code></td>
+<td>1 customer, banyak alamat kirim</td>
+</tr>
+<tr>
+<td>Vendor.<code>Payment Terms Code</code></td>
+<td>Payment Terms.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Vendor.<code>Purchaser Code</code></td>
+<td>Salesperson/Purchaser.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Vendor.<code>Pay-to Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td>Relasi ke diri sendiri</td>
+</tr>
+<tr>
+<td>Order Address.<code>Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Item.<code>Base Unit of Measure</code></td>
+<td>Unit of Measure.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Item.<code>Item Category Code</code></td>
+<td>Item Category.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Item.<code>Product Group Code</code></td>
+<td>Product Group.<code>Code</code> (dengan Item Category Code)</td>
+<td></td>
+</tr>
+<tr>
+<td>Item.<code>Item Disc. Group</code></td>
+<td>Item Discount Group.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Item.<code>Vendor No.</code></td>
+<td>Vendor.<code>No.</code></td>
+<td>Vendor utama</td>
+</tr>
+<tr>
+<td>Item Unit of Measure.<code>Item No.</code></td>
+<td>Item.<code>No.</code></td>
+<td>1 item, banyak satuan</td>
+</tr>
+<tr>
+<td>Item Unit of Measure.<code>Code</code></td>
+<td>Unit of Measure.<code>Code</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Item Vendor.<code>Item No.</code> / <code>Vendor No.</code></td>
+<td>Item.<code>No.</code> / Vendor.<code>No.</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-er-diagram-master">8.2 ER Diagram Master</h3>
+<pre class="mermaid"><code>erDiagram
+    CUSTOMER }o--o| PAYMENT_TERMS : "Payment Terms Code"
+    CUSTOMER }o--o| PAYMENT_METHOD : "Payment Method Code"
+    CUSTOMER }o--o| SHIPMENT_METHOD : "Shipment Method Code"
+    CUSTOMER }o--o| LOCATION : "Location Code"
+    CUSTOMER }o--o| SALESPERSON_PURCHASER : "Salesperson Code"
+    CUSTOMER }o--o| CUSTOMER_PRICE_GROUP : "Customer Price Group"
+    CUSTOMER }o--o| CUSTOMER_DISCOUNT_GROUP : "Customer Disc. Group"
+    CUSTOMER ||--o{ SHIP_TO_ADDRESS : "Customer No."
+    VENDOR }o--o| PAYMENT_TERMS : "Payment Terms Code"
+    VENDOR }o--o| SALESPERSON_PURCHASER : "Purchaser Code"
+    VENDOR ||--o{ ORDER_ADDRESS : "Vendor No."
+    ITEM }o--|| UNIT_OF_MEASURE : "Base Unit of Measure"
+    ITEM ||--|{ ITEM_UNIT_OF_MEASURE : "Item No."
+    UNIT_OF_MEASURE ||--o{ ITEM_UNIT_OF_MEASURE : "Code"
+    ITEM }o--o| ITEM_CATEGORY : "Item Category Code"
+    ITEM }o--o| ITEM_DISCOUNT_GROUP : "Item Disc. Group"
+    ITEM }o--o| VENDOR : "Vendor No. (vendor utama)"
+    ITEM ||--o{ ITEM_VENDOR : "Item No."
+    VENDOR ||--o{ ITEM_VENDOR : "Vendor No."</code></pre>
+<hr />
+<h2 id="9-checklist-sebelum-transaksi-pertama">9. Checklist Sebelum Transaksi Pertama</h2>
+<p><strong>Setup</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>No. Series</code> dan <code>No. Series Line</code> untuk semua dokumen</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Sales &amp; Receivables Setup</code> dan <code>Purchases &amp; Payables Setup</code> terisi</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Posting Group, <code>General Posting Setup</code>, dan <code>VAT Posting Setup</code> lengkap (finance)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rentang tanggal posting yang diizinkan (<code>Allow Posting From/To</code> pada <code>General Ledger Setup</code> atau <code>User Setup</code>) mencakup tanggal transaksi</li>
+</ul>
+<p><strong>Master</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Location</code> untuk gudang yang dipakai</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Item lengkap: <code>Base Unit of Measure</code>, tiga Posting Group, <code>Item Disc. Group</code> (jika dipakai)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Item Unit of Measure</code> untuk satuan beli/jual selain satuan dasar</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Customer lengkap: Posting Group, <code>Payment Terms Code</code>, <code>Customer Price Group</code>, <code>Customer Disc. Group</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Vendor lengkap: Posting Group, <code>Payment Terms Code</code></li>
+</ul>
+<p><strong>Harga dan diskon (opsional namun umum)</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Sales Price</code> / <code>Sales Line Discount</code> (file 04)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Purchase Price</code> / <code>Purchase Line Discount</code> (file 02 dan 04)</li>
+</ul>
+<hr />
+<h2 id="10-perbandingan-singkat-dengan-erpnext">10. Perbandingan Singkat dengan ERPNext</h2>
+<table>
+<thead>
+<tr>
+<th>Topik</th>
+<th>ERPNext</th>
+<th>NAV 2017</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Konversi satuan</td>
+<td>Child table di Item</td>
+<td>Tabel terpisah <code>Item Unit of Measure</code></td>
+</tr>
+<tr>
+<td>Pajak</td>
+<td>Tax Template di dokumen</td>
+<td><code>VAT Bus.</code> × <code>VAT Prod. Posting Group</code> → <code>VAT Posting Setup</code></td>
+</tr>
+<tr>
+<td>Akun</td>
+<td>Default account di Item Group / Company</td>
+<td>Lewat <code>General Posting Setup</code> (kombinasi posting group)</td>
+</tr>
+<tr>
+<td>Harga</td>
+<td>Price List (berisi banyak Item Price)</td>
+<td>Tabel <code>Sales Price</code> dengan <code>Sales Type</code> (Customer / Customer Price Group / All Customers / Campaign)</td>
+</tr>
+<tr>
+<td>Kelompok customer</td>
+<td>Satu <code>Customer Group</code></td>
+<td><strong>Dua</strong> kelompok: <code>Customer Price Group</code> dan <code>Customer Disc. Group</code></td>
+</tr>
+<tr>
+<td>Kelompok barang</td>
+<td>Item Group (hierarki)</td>
+<td><code>Item Category</code> + <code>Product Group</code>, serta <code>Item Discount Group</code> khusus diskon</td>
+</tr>
+<tr>
+<td>Blokir</td>
+<td><code>Disabled</code> / Frozen</td>
+<td><code>Blocked</code> (customer: Ship/Invoice/All; vendor: Payment/All)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Sebelumnya: <a href="../../introduction/pengantar-dan-pemetaan-erpnext/">Overview</a> · Lanjut ke: <a href="../../transaction/purchase-flow/">Transaction</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../js/mermaid.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
