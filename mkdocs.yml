@@ -1,0 +1,46 @@
+site_name: Microsoft Dynamics NAV Playbook
+site_description: A Practical Guide to Understanding Microsoft Dynamics NAV if You are ERPNext Implementor.
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - Overview: introduction/pengantar-dan-pemetaan-erpnext.md
+  - Master Data:
+      - Master Data: master-data/master-data.md
+  - Transaction:
+      - Purchasing: transaction/purchase-flow.md
+      - Selling: transaction/selling-flow.md
+  - Miscellaneous:
+      - Price and Discount: misc/customer-price-group-dan-discount-group.md
+
+extra_javascript:
+  - js/mermaid.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js
